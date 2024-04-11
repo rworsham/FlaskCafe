@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title></title>
+        <title>{{ cafe.name }}</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap icons-->
@@ -15,20 +15,26 @@
     </head>
     <body>
         <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container px-4 px-lg-5">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
                 <a class="navbar-brand" href="{{ url_for('home') }}">Home</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{url_for('add_cafe)}}">Add New Cafe!</a></li>
+                    </ul>
+                </div>
             </div>
         </nav>
         <!-- Product section-->
         <section class="py-5">
             <div class="container px-4 px-lg-5 my-5">
-                <div class="row gx-4 gx-lg-5 align-items-center">
-                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src={{ cafe.img_url }} alt="..." /></div>
+                <div class="row gx-4 gx-lg-12 align-items-center">
+                    <div class="col-md-6"><img class="card-img-bottom mb-5 mb-md-0" src={{ cafe.img_url }} alt="..." /></div>
                     <div class="col-md-6">
-                        <h1 class="display-5 fw-bolder">{{ cafe.name }}</h1>
+                        <h1 class="display-5 fw-bolder text-decoration-underline">{{ cafe.name }}</h1>
                         <div class="fs-5 mb-5">
-                            <span>{{ cafe.location }}</span>
+                            <span class="font-italic">Located in {{ cafe.location }}</span>
                         </div>
                         <ul class="list-group">
                           <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -63,12 +69,20 @@
                                 <i class="bi bi-check-lg green"></i>
                               {% endif %}
                           </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Seating - Approx({{ cafe.seats }})
+                                <i class="bi bi-people"></i>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Coffee Price - {{ cafe.coffee_price }}
+                               <i class="bi bi-cup-fill"></i>
+                          </li>
                         </ul>
-                        <div class="d-flex">
-                            <button class="btn btn-outline-dark flex-shrink-0" type="button">
-                                <i class="bi-cart-fill me-1"></i>
-                                Add to cart
-                            </button>
+                        <div class="d-flex mb-5">
+                            <a href="{{ cafe.map_url }}"><button class="btn btn-outline-dark flex-shrink-0" type="button">
+                                <i class="bi bi-pin-map-fill"></i>
+                                Directions
+                            </button></a>
                         </div>
                     </div>
                 </div>
