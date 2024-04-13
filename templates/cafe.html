@@ -21,7 +21,13 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{url_for('add_cafe)}}">Add New Cafe!</a></li>
+                        {% if not current_user.is_authenticated: %}
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{url_for('register')}}">Sign Up!</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{url_for('login')}}">Log in</a></li>
+                        {% else %}
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{url_for('add_cafe')}}">Add New Cafe!</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{url_for('logout')}}">Log Out</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
@@ -83,6 +89,10 @@
                                 <i class="bi bi-pin-map-fill"></i>
                                 Directions
                             </button></a>
+                            <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                                <i class="bi bi-trash3"></i>
+                                Delete
+                            </button>
                         </div>
                     </div>
                 </div>

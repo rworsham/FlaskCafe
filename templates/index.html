@@ -21,7 +21,13 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        {% if not current_user.is_authenticated: %}
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{url_for('register')}}">Sign Up!</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{url_for('login')}}">Log in</a></li>
+                        {% else %}
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{url_for('add_cafe')}}">Add New Cafe!</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{url_for('logout')}}">Log Out</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
@@ -54,7 +60,7 @@
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href={{ cafe.map_url }}>Directions</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto card-button" href={{ cafe.map_url }}>Directions</a></div>
                             </div>
                         </div>
                     </div>
